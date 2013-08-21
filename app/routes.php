@@ -13,3 +13,15 @@
 
 Route::get('/', 'HomeController@showWelcome');
 Route::post('/','HomeController@postWelcome');
+
+Route::get('createbucket', function()
+{
+	$s3 = AWS::get('s3');
+
+	$result = $s3->createBucket(array(
+		'Bucket'             => 'mybucket',
+		'LocationConstraint' => \Aws\Common\Enum\Region::SINGAPORE
+	));
+
+	return "done";
+});
